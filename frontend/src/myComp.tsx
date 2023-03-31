@@ -54,6 +54,6 @@ export default function CardList(){
     );
 }else{
     //If it isn't loaded don't map the movies into the cards
-    return <div></div>
+    return <div>Loading...</div>
 }
 }

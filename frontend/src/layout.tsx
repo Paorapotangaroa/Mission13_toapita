@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet, Link, NavLink } from 'react-router-dom'
-
+//Layout page that other pages inherit from. NavLinks have a slightly darker hue when they are the selected link
 const Layout = () => {
   return (
     <>
