@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react"
 import Card from "./Card";
-type Movie = {
-    Category: String,
-    Title: String,
-    Year: Number,
-    Director: String,
-    Rating: String,
-    Edited: String
+
+export type Movie = {
+    category: String,
+    director: String,
+    edited: String,
+    lentTo:String, 
+    movieId:Number,
+    notes: String,
+    rating: String,
+    title: String,
+    year:Number
 }
 
 export default function CardList(){
@@ -17,9 +21,9 @@ export default function CardList(){
 
     //Using the use effect hook to call the api and set the masterArray = to the list of movies
     useEffect(() =>{
-    fetch("https://script.google.com/macros/s/AKfycby-BCnXGvrPkzeGfbActgYsccQ3ADC1GBIliB6aovCs8g9wBVEuC1NUiOP6IMpyCgty/exec").then(x=>{
+    fetch("https://localhost:4000/api").then(x=>{
         x.json().then(y=>{
-            setMasterArray(y["data"]["MovieData"]);
+            setMasterArray(y);
             setLoaded(true);
         })
     })}
@@ -39,12 +43,13 @@ export default function CardList(){
                     <th>Director</th>
                     <th>Rating</th>
                     <th>Edited</th>
+                    <th>Lent To</th>
                 </tr>
             </thead>
         <tbody>
         {masterArray.map((x:Movie,index:Number) =>
-            <tr key={index.toString()}>
-                <Card key={x.Title} movie={x} />
+            <tr key={x.movieId.toString()}>
+                <Card key={x.movieId} movie={x} />
             </tr>
         )}
         </tbody>
